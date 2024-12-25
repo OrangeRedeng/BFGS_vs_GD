@@ -25,7 +25,7 @@ def gradient_descent(fprime, x0, lr, maxiter, epsi=10e-3):
     """
 
     if maxiter is None:
-        maxiter = len(x0) * 200
+        maxiter = len(x0) * 10000
 
     # Начальные значения
     x = x0
@@ -55,14 +55,14 @@ def ordinary_F():
     start_time = time.time()  # время начала выполнения
 
     # Гиперпараметры
-    x0 = np.array([24, -99])
-    lr = 0.5
-    maxiter = 100
+    x0 = np.array([0.1, 0.1])
+    lr = 0.1
+    maxiter = None
 
     minimum_x, iter_count = gradient_descent(f_der, x0, lr, maxiter)
     minimum_value = f(minimum_x)
 
-    print(f'Минимум функции f(x) =, {minimum_value}, достигается в точке x = {minimum_x}')
+    print(f'Минимум функции f(x) = {minimum_value}, достигается в точке x = {minimum_x}')
     print(f'Количество итераций до нахождения решения: {iter_count}')
 
     end_time = time.time()  # время окончания выполнения

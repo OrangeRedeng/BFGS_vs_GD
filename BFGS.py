@@ -26,7 +26,7 @@ def bfgs_method(f, fprime, x0, maxiter=None, epsi=10e-3):
     """
     
     if maxiter is None:
-        maxiter = len(x0) * 200
+        maxiter = len(x0) * 10000
 
     # Начальные значения
     k = 0
@@ -48,6 +48,8 @@ def bfgs_method(f, fprime, x0, maxiter=None, epsi=10e-3):
 
         line_search = sp.optimize.line_search(f, f_der, xk, pk)
         alpha_k = line_search[0]
+
+        # breakpoint()
         
         xkp1 = xk + alpha_k * pk
         sk = xkp1 - xk
@@ -77,10 +79,10 @@ def main():
 def ordinary_F():
     start_time = time.time()  # время начала выполнения
 
-    minimum_x, iter_count = bfgs_method(f, f_der, np.array([24, -99]))
+    minimum_x, iter_count = bfgs_method(f, f_der, np.array([0.1, 0.1]))
     minimum_value = f(minimum_x)
 
-    print(f'Минимум функции f(x) =, {minimum_value}, достигается в точке x = {minimum_x}')
+    print(f'Минимум функции f(x) = {minimum_value}, достигается в точке x = {minimum_x}')
     print(f'Количество итераций до нахождения решения: {iter_count}')
 
     end_time = time.time()  # время окончания выполнения
